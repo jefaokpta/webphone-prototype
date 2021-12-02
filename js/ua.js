@@ -44,7 +44,11 @@ function doCall() {
         audio_remote: document.getElementById('audio-remote'),
         events_listener: { events: '*', listener: eventsListener } // optional: '*' means all events
     });
-    callSession.call('123456');
+    callSession.call('1001001');
+}
+
+function hangup() {
+    callSession.hangup();
 }
 
 
@@ -69,7 +73,7 @@ function createSipStack() {
 
 var registerBtn = document.getElementById('register');
 registerBtn.addEventListener('click', function () {
-    registerSession = sipStack.newSession('register', {
+    const registerSession = sipStack.newSession('register', {
         events_listener: { events: '*', listener: eventsListener }// optional: '*' means all events
     });
     registerSession.register();
