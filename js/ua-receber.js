@@ -69,17 +69,20 @@ const sipStack = new SIPml.Stack({
     ]
 })
 
+window.onload = () => {
+    sipStack.start()
+}
+
 const answerBtn = document.getElementById('answer');
+const hangupBtn = document.getElementById('hangup');
+const dialBtn = document.getElementById('dial');
+
 answerBtn.addEventListener('click', () => {
     callSession.accept();
 })
-
-const hangupBtn = document.getElementById('hangup');
 hangupBtn.addEventListener('click', () => {
     callSession.hangup();
 })
-
-const dialBtn = document.getElementById('dial');
 dialBtn.addEventListener('click', () => {
     const number = document.getElementById('phoneInput').value;
     callSession = sipStack.newSession('call-audio', {
@@ -88,7 +91,7 @@ dialBtn.addEventListener('click', () => {
     callSession.call(number);
 })
 
-window.onload = () => {
-    sipStack.start()
+function sendDtmf(dtmf) {
+    callSession.dtmf(dtmf);
 }
 
