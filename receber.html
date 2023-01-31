@@ -5,19 +5,15 @@
     </head>
     <body>
 
-        <button id="register" >Register</button>
-        <button onclick="doCall();" >LIGAR</button>
-        <button onclick="hangup();" >DESLIGAR</button>
+        <button id="hangup" >DESLIGAR</button>
+        <button id="dial" >LIGAR</button>
         <button onclick="sendDTMF9();" >DTMF 9</button>
         <button onclick="sendDTMF2();" >DTMF 2</button>
-        <button onclick="startSipStack();" >START SIP STACK</button>
         <button id="answer" >ATENDER</button>
 
-        <video hidden id="video-local"></video>
-        <video hidden id="video-remote"></video>
         <audio hidden autoplay="autoplay" id="audio-remote"></audio>
 
-        <input type="number" id="phone" value="1132931515">
+        <input type="number" id="phoneInput" value="1132931515">
 
         <script src="js/SIPml-api.js"></script>
         <script src="js/secure.js"></script>

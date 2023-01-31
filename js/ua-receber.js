@@ -74,6 +74,20 @@ answerBtn.addEventListener('click', () => {
     callSession.accept();
 })
 
+const hangupBtn = document.getElementById('hangup');
+hangupBtn.addEventListener('click', () => {
+    callSession.hangup();
+})
+
+const dialBtn = document.getElementById('dial');
+dialBtn.addEventListener('click', () => {
+    const number = document.getElementById('phoneInput').value;
+    callSession = sipStack.newSession('call-audio', {
+        audio_remote: document.getElementById('audio-remote'),
+    });
+    callSession.call(number);
+})
+
 window.onload = () => {
     sipStack.start()
 }
