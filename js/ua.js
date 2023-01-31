@@ -4,6 +4,7 @@ const peer = secureData.peer;
 const password = secureData.password;
 let callSession;
 let sipStack;
+let registerSession;
 // todo: descarregar audio de ring para botao play nao ativar o audio
 const ringAudio = new Audio();
 const phone = document.getElementById('phone');
@@ -47,7 +48,7 @@ const eventsListener = (event) => {
             }
             break;
         default:
-            console.log('::::::::::::::::::::: EVENTO DESCONHECIDO = ' + event.type);
+            console.log('::::::::::::::::::::: EVENTO DESCONHECIDO = ', event);
             break;
     }
 }
@@ -67,6 +68,7 @@ function doCall() {
     // const telNumber = '11938065778'
 
     callSession.call(phone.value);
+
 
 }
 
@@ -102,11 +104,17 @@ function createSipStack() {
 const registerBtn = document.getElementById('register');
 
 registerBtn.addEventListener('click', function () {
-    const registerSession = sipStack.newSession('register', {
+    registerSession = sipStack.newSession('register', {
         events_listener: { events: '*', listener: eventsListener }// optional: '*' means all events
     });
     registerSession.register();
 });
+
+const answerBtn = document.getElementById('answer');
+
+answerBtn.addEventListener('click', function () {
+    registerSession.accept();
+})
 
 function startSipStack() {
     sipStack.start();
