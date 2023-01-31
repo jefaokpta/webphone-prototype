@@ -124,3 +124,10 @@ function sendDtmf(dtmf) {
     callSession.dtmf(dtmf);
 }
 
+// avoid page to be closed while a call is in progress
+window.onbeforeunload = () => {
+    if (callSession) {
+        callSession.hangup();
+    }
+}
+
