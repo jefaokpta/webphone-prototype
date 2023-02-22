@@ -15,6 +15,7 @@ const mainEventsListener = (event) => {
             break;
         case 'i_new_call':
             event.newSession.setConfiguration({
+                audio_remote: document.getElementById('audio-remote'),
                 events_listener: {events: '*', listener: incomingCallEventsListener},
             })
             console.log('::::::::::::::::: LIGACAO DE ENTRADA DE : ', event.newSession.getRemoteFriendlyName());
