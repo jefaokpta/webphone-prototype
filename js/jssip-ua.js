@@ -83,10 +83,24 @@ function uaEventHandling() {
         }
         else {
             console.trace(e.request + ' start incoming session');
-            //e.session.answer(options);
+            newSession(e.session);
         }
     });
 
+}
+
+function newSession(session){
+    this.session = session;
+    this.session.on('connecting', e => console.log('connecting'));
+    this.session.on('peerconnection', e => {
+        console.log('peerconnection')
+        audioListener(session);
+    });
+    this.session.on('ended', e => console.log('ended'));
+    this.session.on('failed', e => console.log('failed'));
+    this.session.on('accepted', e => console.log('accepted'));
+    this.session.on('confirmed', e => console.log(' confirmed'));
+    this.session.on('addstream', e => console.log('addstream'));
 }
 
 function dial() {
@@ -96,6 +110,14 @@ function dial() {
 
 function hangup() {
     session.terminate();
+}
+
+function register() {
+    ua.register();
+}
+
+function answer() {
+    session.answer();
 }
 
 
