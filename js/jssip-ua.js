@@ -37,7 +37,7 @@ const callEventHandlers = {
 function audioListener(session){
     session.connection.addEventListener('addstream', e => {
         console.log('remote audio stream added');
-        const audio = document.createElement('audio');
+        const audio = new Audio()
         audio.srcObject = e.stream;
         audio.play();
     });
